@@ -1,38 +1,52 @@
-//function sum () {
-	//return 4 + 6
-//}
-//console.log(sum())
+const formulario = document.querySelector('#select-accounts')
+const select = document.querySelector('select')
+const body = document.querySelector('body')
+const wrapper = document.querySelector('#wrapper')
+let selected = []
 
-function sum(value1, value2){
-	return value1 + value2
+const cuentas = [
+	{id: 1, nombre: "Estefanía", saldo: 700, pin: '0000' },
+	{id: 2, nombre: "Hazel", saldo: 480, pin: '1234' },
+	{id: 3, nombre: "Alejandra", saldo: 100, pin: '8976'}
+]
+
+
+const validatePIN = (id, pin) => {
+	 selected = cuentas.filter((cuenta) =>{
+		return cuenta.id === parseInt(id)
+	 })
+	if (selected[0].pin === pin) {
+		console.log (selected.pin)
+		alert ('Bienvenido')
+		wrapper.innerHTML=""
+		//body.innerHTML= ''
+		//location.href = "/Opciones/index.html"
+		renderMenu(selected[0].nombre)
+	} else {
+		alert ('Intente nuevamente')
+	}
 }
 
-console.log(sum(3,8))
+
+formulario.addEventListener('submit', (event)=> {
+	event.preventDefault();
+	let user_id = event.target ["cuenta"].value
+
+	let pin = prompt ("Ingrese su pin", "")
+	if (pin != null) {
+		validatePIN(user_id, pin)
 
 
+		//if (pin === '0000'){
+			//console.log('Correcto')
+		//} else {
+		//	console.log('Incorrecto')
+		}
+    })
 
-//a % b -- residuo de división
-
-//tipos de datos
-
-//'Víctor' -- string 
-//1 -- int 
-//3.1416 -- float 
-//true, false -- boolean 
-//[ 1, 2, 3, 4] -- array 
-//{name: 'Victor', age: 37} -- object 
-//null -- null
-
-var victor = 16;
-var enrique = 24;
-function restaEdades(userAge1, userAge2) {
-	var resta = userAge1 - userAge2
-	var MAYOR_DE_EDAD = 18;
-	var user1EsMayor = userAge1 > 18 ? 'Es mayor' : 'No es mayor'
-	return{
-		diferencia: resta,
-		es_mayor: user1EsMayor
-	}
-	}
-
-console.log(restaEdades(victor, enrique))
+cuentas.forEach((cuenta) => {
+	let option = document.createElement("option")
+	option.value = cuenta.id
+	option.innerText = cuenta.nombre
+select.appendChild(option)
+})

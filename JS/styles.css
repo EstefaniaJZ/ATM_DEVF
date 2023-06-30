@@ -1,0 +1,13 @@
+body{
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url("https://static.vecteezy.com/system/resources/previews/007/503/113/non_2x/leadership-for-successful-new-idea-excellent-business-graph-on-background-under-creative-solution-concept-in-3d-render-on-white-background-3d-goal-for-business-bank-finance-investment-vector.jpg");
+}
+
+select{
+	background-color: white !important;
+}
+
